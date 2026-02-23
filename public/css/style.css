@@ -1,0 +1,385 @@
+html, body {
+    height: 100%;
+}
+
+
+body{
+    padding:0;
+    font-family: "Poppins";
+    display: flex;
+    flex-direction: column;
+}
+
+
+.userBadge{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size:1.25rem;
+}
+
+footer {
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    padding: 1rem 2px;
+}
+
+.Title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer > div {
+    flex: 1;
+    min-width: 250px;
+    margin:5px 0;
+}
+
+.nav-link{
+    font-family: "Poppins" !important;
+}
+
+.contact{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-media{
+    display: flex;
+    flex-direction:row;
+    gap:0.75rem;
+}
+
+.social-media i{
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.termsandc{
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+}
+
+@media (max-width:400px){
+    .termsandc{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+.navbar{
+    line-height: 2rem;
+    margin-bottom: 1rem;
+}
+
+a,a:hover,a:active,a:visited{
+    text-decoration: none !important;
+    outline:none;
+}
+
+.myContents{
+    width:100%;
+    flex:1;
+}
+
+h1,h2,h3{
+    font-family:"Bungee";
+}
+
+h4,h5,h6{
+    font-family:"Bungee";
+}
+
+.card{
+    transition: 0.3s;
+    margin: 5px;
+    max-width: 185px;
+    border-radius:12%;
+    border:none !important;
+}
+
+
+.card_container{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+.card:hover{
+    opacity: 0.5;
+}
+
+.card_container a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+  outline:none;
+}
+
+
+.card p{
+    margin: 0px;
+}
+
+.card img {
+  width: 185px;
+  height:185px;      /* fixed height for cards */
+  object-fit: cover;   /* fills card without distortion */
+  display: block;
+  border-radius: 12%;
+  margin-bottom: 2%;
+}
+
+.card .price{
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.745);
+}
+
+.card .title{
+    font-weight: bold;
+    font-size: 80%;
+}
+
+.card .meta{
+    max-width: 175px;
+    padding-left:4%;
+}
+
+.image{
+    height:350px;
+    width:100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.contentsContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:1rem;
+}
+
+.contents{
+    width:100%;
+    max-width: 900px;
+}
+
+.Price{
+    font-weight: bold;
+}
+
+.buttonPanel{
+    max-width: 400px;;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.btn{
+    width:70px;
+}
+
+.Title{
+    font-size: small;
+}
+
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* reverses layout */
+    justify-content: flex-end;
+    font-size: 2rem;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    color: #ccc;
+    cursor: pointer;
+}
+
+/* Hover */
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
+
+/* Selected */
+.rating input:checked ~ label {
+    color: gold;
+}
+
+#ratingWrapper.is-invalid .invalid-feedback {
+    display: block;
+}
+
+
+
+.no-dim:hover{
+    opacity: 1;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius:12px;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+    display: none !important;
+  }
+
+  .navbar-expand-md .navbar-collapse.show {
+    display: block !important;
+  }
+
+  .navbar {
+    line-height: normal;
+  }
+}
+
+
+/*Search bar*/
+
+.gt-hero-search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.gt-hero-clear {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 23px;
+}
+
+/* Make form behave like a wrapper only */
+#destinationForm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.gt-search-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px 15px 10px 20px;
+  border-radius: 60px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  max-width: 750px;
+  width: 90%;
+}
+
+
+.location-icon {
+  color: black;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.gt-destination-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 0;
+  background: transparent;
+} 
+
+.gt-destination-input:focus {
+  outline: none;
+  box-shadow: none;
+} 
+
+.gt-destination-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.gt-search-btn {
+  background: linear-gradient(135deg,black,rgba(0, 0, 0, 0.444));
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gt-search-btn:hover {
+  transform: scale(1.1);
+}
+/*clear btn*/
+
+
+.gt-hero-search form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button.gt-clear-main-btn {
+  display: none; /* Hidden by default */
+  margin-bottom: 5px;
+}
+
+
+/*responsiveness*/
+
+@media (max-width: 600px) {
+  .gt-search-wrapper {
+    width: 95%;
+    padding: 8px 12px;
+  }
+
+  .gt-destination-input {
+    font-size: 16px;
+  }
+
+   /* ✅ FIXED Search Button Style */
+  .gt-search-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+/*Search bar*/

@@ -1,0 +1,157 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<body>
+    <style>
+        #marker {
+            background-image: url(<%- JSON.stringify(details.image.url) %>);
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .mapboxgl-popup {
+            max-width: 200px;
+        }
+    </style>
+    <script>
+        const MapToken = "<%= process.env.MAP_TOKEN %>";
+        const coordinate = <%- JSON.stringify(details.geometry.coordinates) %>;
+    </script>
+    <div  class="contentsContainer" >
+        <div class="contents" >
+            <div class="Title"><h2><%= details.title %></h2></div>
+            <div><a href="<%= details.image.url %>" target="_blank"><img src="<%= details.image.url %>" class="image"/></a></div>
+            <h6><i class="fa-solid fa-user"></i><%= details.owner.username %></h6>
+            <div class="Description"><p><%= details.description %></p></div>
+            <div><p>Location : <%= details.location %></p></div>
+            <div><p>Country : <%= details.country %></p></div>
+            <div class="Price"><p>Price: ₹<%= details.price %> per night</p></div>
+            <% if(currUser && details.owner._id.equals(currUser._id)) { %>
+            <div class="buttonPanel">
+                <div><a href="/listings/<%= details._id %>/change"><button class="btn btn-dark">Edit</button></a></div>
+                <form action="/listings/<%= details._id %>/delete?_method=DELETE" method="POST"><button type="submit" class="btn btn-danger">Delete</button></form>
+            </div>
+            <% } %>
+        </div>
+        
+        <div class="contents reviewForm">
+    <hr>
+
+    <!-- FORM START -->
+     <% if(currUser){ %>
+    <form action="/listings/<%= details._id %>/reviews"
+        novalidate
+        method="POST"
+        class="form needs-validation">
+
+        <h4>Leave a Review</h4>
+
+        <div class="mb-2" id="ratingWrapper">
+            <div class="rating">
+                <input type="radio" name="reviews[rating]" id="star5" value="5" required>
+                <label for="star5">★</label>
+
+                <input type="radio" name="reviews[rating]" id="star4" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" name="reviews[rating]" id="star3" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" name="reviews[rating]" id="star2" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" name="reviews[rating]" id="star1" value="1">
+                <label for="star1">★</label>
+            </div>
+
+
+            <div class="invalid-feedback">
+                Rating required
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="comm" class="form-label">Comments</label>
+            <textarea id="comm"
+                    name="reviews[comment]"
+                    class="form-control"
+                    required></textarea>
+            <div class="invalid-feedback">
+                Comment required
+            </div>
+        </div>
+
+        <button class="btn btn-outline-primary mt-2" type="submit">
+            Submit
+        </button>
+    </form>
+       <hr>
+    <% } %>
+    <!-- FORM END -->
+</div>
+    <div class="contents">
+        <div><h4>All Reviews</h4></div>
+        <div style="display: flex;flex-wrap:wrap;gap:10px;">
+            <% if(details.reviews.length === 0){ %>
+                <div><p>No Reviews yet, be the first one !</p></div>
+            <% } %>
+            <% for(let review of details.reviews){ %>
+                <div class="card no-dim" style="max-width:25rem;">
+                    <div class="card-body">
+                            <h6 class="card-title">&#9733;<%= review.rating %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= review.owner.username %></h6>
+                        <p class="card-text"><%= review.comment %></p>
+                        <form action="/listings/<%= details._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                method="POST"
+                                style="display:inline;">
+                            <% if(currUser && review.owner._id.equals(currUser._id)) { %>   
+                                <button type="submit"
+                                        style="border:none; background:none; padding:0; 
+                                                font-size:smaller; opacity:0.7;"
+                                        onmouseover="this.style.opacity='1'"
+                                        onmouseout="this.style.opacity='0.7'">
+                                    Delete
+                                </button>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <hr>
+        </div>
+        <!--Map space-->
+        
+        <div class="contents">
+            <div class="title"><h4>Where You will be</h4></div>
+            <div id="map"></div>
+        </div>
+    </div>
+    <script src="/js/starValidation.js"></script>
+    <script>
+        const form = document.querySelector(".needs-validation");
+        if(form){
+        const ratingInputs = document.querySelectorAll('input[name="reviews[rating]"]');
+        const ratingWrapper = document.getElementById("ratingWrapper");
+
+        form.addEventListener("submit", function (e) {
+            let selected = false;
+
+            ratingInputs.forEach(input => {
+                if (input.checked) selected = true;
+            });
+
+            if (!selected) {
+                e.preventDefault();
+                ratingWrapper.classList.add("is-invalid");
+            } else {
+                ratingWrapper.classList.remove("is-invalid");
+            }
+
+            form.classList.add("was-validated");
+        });
+    }
+    </script>
+    <script src="/js/mapBox.js"></script>
+</body>

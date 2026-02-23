@@ -1,0 +1,51 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<body>
+    <div class="contentsContainer">
+        <div class="contents">
+            <h2>Create a Listing</h2>
+            <form action="/listings/create" class="needs-validation" novalidate method="post" enctype="multipart/form-data">    
+                <div class="mb-3">
+                    <label for="Input1" class="form-label">Title</label>
+                    <input type="text" required class="form-control" id="Input1" name="title">
+                    <div class="invalid-feedback">Title Required</div>
+                </div>
+                <div class="mb-3">
+                    <label for="Input2" class="form-label">Description</label>
+                    <textarea required class="form-control" id="Input2" name="description"></textarea>
+                    <div class="invalid-feedback">Description Required</div>
+                </div>
+                <div class="mb-3">
+                    <label for="Input3" class="form-label">Upload Image</label>
+                    <input type="file" accept=".jpg, .jpeg, .png"  class="form-control" id="Input3" name="image[url]" required>
+                    <div class="invalid-feedback">Image Required</div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="Input4" class="form-label">Price</label>
+                            <input required type="text" class="form-control" id="Input4"  name="price">
+                            <div class="invalid-feedback">Price Required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                        <div class="mb-3">
+                            <label for="Input5" class="form-label">Country</label>
+                            <input required type="text" class="form-control" id="Input5" name="country">
+                            <div class="invalid-feedback">Country Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="Input6" class="form-label">Location</label>
+                    <input required type="text" class="form-control" id="Input6" name="location">
+                    <div class="invalid-feedback">Location Required</div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

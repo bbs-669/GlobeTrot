@@ -1,0 +1,27 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<body>
+    <div class="contentsContainer">
+        <form class="contents needs-validation" novalidate action="/users/create" method="POST">
+            <h2>New User</h2>
+            <div class="mb-3">
+                <label for="Input1" class="form-label">User Name</label>
+                <input type="text" required class="form-control" id="Input1" name="username">
+                <div class="invalid-feedback">Username Required</div>
+            </div>
+            <div class="mb-3">
+                <label for="Input1" class="form-label">Email</label>
+                <input type="text" required class="form-control" id="Input1" name="email">
+                <div class="invalid-feedback">Email Required</div>
+            </div>
+            <div class="mb-3">
+                <label for="Input1" class="form-label">Password</label>
+                <input type="text" required class="form-control" id="Input1" name="password">
+                <div class="invalid-feedback">Password Required</div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>

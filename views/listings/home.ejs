@@ -1,0 +1,65 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<body>
+    <div style="margin: 5px;">
+        <!-- <h2>All Listings</h2> -->
+        <!--Search bar-->
+        <div class="gt-hero-search">
+            <form id="destinationForm" action="/listings" method="GET">
+                <div class="gt-search-wrapper">
+                    <i class="fa fa-map-marker-alt location-icon"></i>
+                    <input type="text" name="destination" placeholder="Search destinations" class="gt-destination-input" id="inputSearch"
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
+                    <button type="submit" class="gt-search-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>            
+        </div>
+        <div class="gt-hero-clear">
+            <button type="button" id="clearFilterBtn" class="gt-clear-main-btn btn btn-dark">
+                Clear
+            </button>
+        </div>
+        <!--Search bar-->
+        <div class="card_container">
+            <% for(let listing of result) { %>
+                <a href="/listings/<%= listing._id %>">
+                    <div class="card">
+                        <div class="head"><img src="<%= listing.image.url %>" loading="eager" /></div>
+                        <div class="meta">
+                            <div>
+                                <p class="title">
+                                    <%= listing.title %>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="price">₹<%= listing.price %>/night</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const clearBtn = document.getElementById("clearFilterBtn");
+            const inputField = document.getElementById("inputSearch");
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get("destination");
+
+            inputField.addEventListener('invalid', function (e) {
+                e.preventDefault(); // This kills the popup message
+            });
+
+            if (destination && destination.trim() !== "") {
+                clearBtn.style.display = "inline-block";
+            }
+
+            clearBtn.addEventListener("click", () => {
+                window.location.href = "/listings";
+            });
+        });
+    </script>
+</body>

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary sticky-top" style="background-color: #e3f2fd;" data-bs-theme="light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/listings" style="color:black"><h1><i class="fa-solid fa-bus-side"></i>&nbsp;Globe Trot</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a style="font-size:1.15rem;" class="nav-link active" href="/listings">Explore</a>
+            </li>
+            <li class="nav-item">
+            <a style="font-size:1.15rem;" class="nav-link active" href="/listings/new">List a Trot</a>
+            </li>
+        </ul>
+        <div class="navbar-nav ms-auto gap-2">
+            <% if(!loggedIn) { %>
+                <div><a class="nav-link" href="/users/signup">Sign Up</a></div>
+                <div><a class="nav-link" href="/users/login">Login</a></div>
+            <% } %>
+            <% if(loggedIn) { %>
+                <div><a class="nav-link" href="/users/logout">Logout</a></div>
+            <% } %>
+        </div>
+        </div>
+    </div>
+</nav>
+
